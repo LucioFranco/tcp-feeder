@@ -1,0 +1,16 @@
+data_dir = "/tmp/vector"
+
+[sources.tcp_in]
+  type = "tcp"
+  address = "127.0.0.1:8080"
+
+[sinks.tcp_out]
+  type = "tcp"
+  inputs = ["tcp_in"]
+  address = "localhost:8081"
+  encoding = "json"
+
+[sinks.tcp_out.buffer]
+  type = "disk"
+  max_size = 104900
+  when_full = "block"
